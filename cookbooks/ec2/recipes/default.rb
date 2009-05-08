@@ -5,6 +5,7 @@ end
 
 execute "Install resolv.conf" do
   command "cp /etc/ec2/resolv.conf /etc/resolv.conf"
+  only_if { File.exists?("/etc/ec2/resolv.conf") }
 end
 
 bootstrap_fqdn = "#{node[:assigned_hostname]}.#{node[:assigned_domain]}"
