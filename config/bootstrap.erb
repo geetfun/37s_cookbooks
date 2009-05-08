@@ -1,0 +1,49 @@
+#!/bin/sh
+#
+# EC2 bootstrap
+#
+export PATH=$PATH:/usr/local/bin
+
+mkdir /etc/chef
+mkdir /var/chef
+
+cat > /etc/chef/solo.rb <<SOLO
+cookbook_path     "/var/chef/cookbooks"
+node_path         "/var/chef/nodes"
+log_level         :info
+file_store_path  "/var/chef"
+file_cache_path  "/var/chef"
+SOLO
+
+cat > /etc/chef/bootstrap.json <<BOOTSTRAP
+{"assigned_hostname": "<%= @hostname %>",
+ "assigned_domain": "<%= @domain %>",
+ "public_fqdn": "<%= @public_fqdn %>",
+ "role": "<%= @role %>",
+ "recipes": ["ec2"]
+}
+BOOTSTRAP
+
+cat > /etc/chef/init.json <<INIT
+{"role": "<%= @role %>",
+ "recipes": ["ddclient", "base", "chef::client"],
+ "public_fqdn": "<%= @public_fqdn %>"
+}
+INIT
+
+echo <%= @validation_token %> > /etc/chef/validation_token
+
+#cat > /etc/ec2/resolv.conf <<DNS
+#search <%= @domain %>
+#nameserver <%= @primary_nameserver_ip %>
+#DNS
+
+cp /etc/ec2/resolv.conf /etc/resolv.conf
+
+gem sources -a http://gems.opscode.com
+gem install chef --no-rdoc --no-ri
+
+apt-get update
+DEBCONF_TERSE='yes' DEBIAN_PRIORITY='critical' DEBIAN_FRONTEND=noninteractive apt-get -qyu install emacs22-nox vim git-core mysql-client libshadow-ruby1.8 libmysqlclient15-dev build-essential ntp ruby ruby1.8-dev libopenssl-ruby1.8 irb rdoc ri rubygems rake
+#chef-solo -j /etc/chef/bootstrap.json -r http://dist/cookbooks.tgz
+#chef-solo -j /etc/chef/init.json
