@@ -1,5 +1,4 @@
 require_recipe "passenger"
-require_recipe "syslog::client"
 
 directory "/u/apps" do
   action :create
