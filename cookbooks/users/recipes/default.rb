@@ -1,14 +1,12 @@
-raise RuntimeError, "The node requires a role, one of: #{node[:roles].keys.join(',')}" unless node[:role] and node[:roles].has_key?(node[:role])
-
 include_recipe "ssh_keys"
 
 role[:groups].each do |group_name|
 
+  users = node[:users].find_all { |u| u.last[:group] == group_name }
+
   group group_name.to_s do
     gid node[:groups][group_name][:gid]
   end
-
-  users = node[:users].find_all { |u| u.last[:group] == group_name }
 
   users.each do |u, config|
     user u do
@@ -31,14 +29,14 @@ role[:groups].each do |group_name|
     add_keys u do
       conf config
     end
-  end
+  end  
 end
 
-directory "/u" do
-  action :create
-  owner "root"
-  group "admin"
-  mode 0775
+# Remove initial setup user and group.
+user  "ubuntu" do
+  action :remove
 end
 
-require_recipe "sudo"
+group "ubuntu" do
+  action :remove
+end
