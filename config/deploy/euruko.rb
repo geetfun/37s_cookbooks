@@ -25,12 +25,8 @@ namespace :ec2 do
     output = ERB.new(File.read(File.dirname(__FILE__)+"/../bootstrap.erb")).result(binding)
     
     ec2 = RightAws::Ec2.new(ENV['AWS_ACCESS_KEY_ID'], ENV['AWS_SECRET_ACCESS_KEY'])
-    result = ec2.launch_instances(config[:ami], :group_ids => ['default', @role, @hostname], :instance_type => config[:type], :key_name => 'ec2', :user_data => output)
+    result = ec2.launch_instances(config[:ami], :group_ids => ['default', @role, @hostname], :instance_type => config[:type],
+                                                :key_name => 'ec2', :user_data => output)
     puts result.inspect
   end
 end
-
-# noc rebuild steps
-# gem install merb-core merb-haml merb-helpers merb-slices -v 1.0.10 --no-rdoc --no-rdoc
-# gem install cucumber rspec --no-rdoc --no-ri
-# ln -s /var/chef/couchdb /var/lib/couchdb
