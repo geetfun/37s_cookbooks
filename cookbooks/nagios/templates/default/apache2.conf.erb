@@ -1,4 +1,4 @@
-<VirtualHost *:445>
+<VirtualHost *:446>
   ServerAdmin     <%= @node[:base][:sysadmin_email] %>
   ServerName      nagios.<% @node[:domain] %>
   ServerAlias     nagios <% if @node[:public_domain] %>nagios.<%= @node[:public_domain] %><% end %>
