@@ -2,8 +2,8 @@
 
 define host {
   use server
-  address <%= node[:ipaddress] %>
-  host_name <%= node[:fqdn] %>
+  address <%= @node[:ipaddress] %>
+  host_name <%= @node[:fqdn] %>
   hostgroups server
 }
 
