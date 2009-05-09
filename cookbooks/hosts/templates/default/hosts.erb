@@ -1,0 +1,8 @@
+127.0.0.1 localhost <%= @node[:hosts][:localhost_aliases].join(" ") if @node[:hosts][:localhost_aliases] %>
+<%= @node[:ipaddress] %> <%= @node['fqdn'] %> <%= @node['hostname'] %>
+
+<% if @node[:hosts][:entries] %>
+<% @node[:hosts][:entries].each do |h| %>
+<%= h.join(" ") %>
+<% end %>
+<% end %>
