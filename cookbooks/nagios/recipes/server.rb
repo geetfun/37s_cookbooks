@@ -39,19 +39,8 @@ directory "/var/lib/nagios3/rw" do
   mode 02775
 end
 
-# Support our legacy nagios install
-directory "/usr/local/nagios"
-
-link "/usr/local/nagios/libexec" do
-  to "/usr/lib/nagios/plugins"
-end
-
 link "/bin/mail" do
   to "/usr/bin/mailx"
-end
-
-link "/usr/local/nagios/bin" do
-  to "/u/nagios/current/bin"
 end
 
 # using the node object inside this block fails, so we assign for now
