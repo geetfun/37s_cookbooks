@@ -1,5 +1,11 @@
 require_recipe "syslog"
 
+directory node[:syslog_ng][:root] do
+  owner "root"
+  group "admin"
+  mode 0755
+end
+
 template "/etc/syslog-ng/syslog-ng.conf" do
   source "syslog-ng-server.conf.erb"
   owner "root"
