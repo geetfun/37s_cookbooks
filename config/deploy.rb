@@ -1,6 +1,6 @@
 set :application, "chef_recipes"
 set :scm_user, ENV['USER']
-set :repository, "ssh://#{scm_user}@dev.37signals.com/u/git/chef_recipes.git"
+set :repository, "git@github.com:37signals/37s_cookbooks.git"
 set :deploy_to, "/var/chef_recipes"
 set :scm, :git
 
@@ -58,7 +58,8 @@ task :run_solo do
 end
 
 after "deploy", "update_recipes"
-after "update_recipes", "create_tarball"
+#after "update_recipes", "create_tarball"
+
 deploy.task :default, :except => {:no_release => true} do
   run "cd #{deploy_to} && git config remote.origin.url #{repository} && git pull"
   sudo "chmod -R g+w #{deploy_to}"

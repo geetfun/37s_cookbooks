@@ -1,4 +1,4 @@
-  ssh_options[:keys] = [File.join(File.dirname(__FILE__), "ec2.pem"), File.join(ENV["HOME"], ".ssh", "id_rsa")] 
+ssh_options[:keys] = [File.join(ENV["HOME"], ".ec2", "euruko.pem"), File.join(ENV["HOME"], ".ssh", "id_rsa")] 
 
 set :user, ENV['USER']
 role :app, "noc.euruko.37signals.com"
