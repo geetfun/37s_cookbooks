@@ -48,3 +48,14 @@ users[:joshua] = {:password => "$1$FNYTkDAK$Dv6pg5wRrMo/aATt4e9zb.", :comment =>
 ssh_keys[:joshua]  = "ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAw942jLhdXBPHljWtE42B1XeFuWSJU/+w4pVTwdID6KEf8KF1cx/Jc0EJnA2ipMgJtUCJolWyt0PdGcqf8oE7UbrkzCW78g+zLa8muxUdHF6JK0b/nQW0plj8rg3rTxTz4lIi46AgW1iC9XXKlcX1IRC3w0Y9Lu+RMyGxdifFNHSj3g+Vd2QfHJBQkQz4Nx1ngT+y6y/966K/AIJHej67MmuCHRTxMKxX5vxmbvHP8WgSvylgx+mkTuYhUzGaQtvopM6zzXLfIsicnxVIu1hWjXlle55t0EamGysjGrJFbYiunbWDlwRfZOBe/ZKec5rBPLxwBC1xQ2F4sOJFUE+iUQ== jsierles@MacAir.local"
 
 applications[:tadalist] = {:gems => ['fast_xs']}
+
+
+
+
+
+
+
+
+
+ddclient[:dyndns_login] = "883mhi-ec2dyn"
+ddclient[:dyndns_password] = "5SkR2hJiNsQP"
