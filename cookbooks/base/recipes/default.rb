@@ -14,7 +14,6 @@ require_recipe "apt"
 require_recipe "git"
 require_recipe "postfix"
 require_recipe "hosts"
-require_recipe "dns::client"
 require_recipe "ssh::server"
 
 require_recipe "users"
