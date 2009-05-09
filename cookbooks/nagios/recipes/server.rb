@@ -123,10 +123,10 @@ end
 
 nagios_template "frequent" do
   template_type "service"
-	use "generic-service"
+	use "default-service"
 	max_check_attempts    3
-  normal_check_interval 1
-  retry_check_interval  1
+  normal_check_interval 10
+  retry_check_interval  10
 end
 
 nagios_conf "templates"
