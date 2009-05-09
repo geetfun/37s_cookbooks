@@ -5,7 +5,6 @@ role[:groups].each do |group_name|
   users = node[:users].find_all { |u| u.last[:group] == group_name }
 
   group group_name.to_s do
-    Chef::Log.info group_name
     gid node[:groups][group_name][:gid]
   end
 
