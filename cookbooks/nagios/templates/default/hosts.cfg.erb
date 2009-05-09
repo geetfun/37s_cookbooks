@@ -8,6 +8,7 @@ define host {
 }
 
 <% @hosts.each do |host| %>
+<% next if host['ipaddress'] == @node[:ipaddress] %>
 define host {
   use server
   address <%= host['ipaddress'] %>
