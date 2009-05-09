@@ -122,6 +122,13 @@ link "#{node[:chef][:server_path]}/public/slices/chef-server-slice" do
   to "#{node[:chef][:server_slice_path]}/public"
 end
 
+template "#{node[:chef][:server_path]}/config.ru" do
+  source "config.ru.erb"
+  owner "app"
+  group "app"
+  mode 0644
+end
+
 ssl_cert "/var/chef/certificates" do
   fqdn "chef.#{node[:domain]}"
 end
