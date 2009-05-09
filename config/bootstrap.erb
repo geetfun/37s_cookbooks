@@ -32,11 +32,10 @@ cat > /etc/chef/init.json <<INIT
 INIT
 
 echo <%= @validation_token %> > /etc/chef/validation_token
-
-#cat > /etc/ec2/resolv.conf <<DNS
-#search <%= @domain %>
-#nameserver <%= @primary_nameserver_ip %>
-#DNS
+cat > /etc/ec2/resolv.conf <<DNS
+search <%= @domain %>
+nameserver <%= @primary_nameserver_ip %>
+DNS
 
 cp /etc/ec2/resolv.conf /etc/resolv.conf
 
