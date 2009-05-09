@@ -1,6 +1,15 @@
 PassengerDefaultUser chef
 PassengerMaxPoolSize 20
 
+# Used for storing the cookbook files for bootstrap
+<VirtualHost *:80>
+  ServerAdmin   <%= @node[:base][:sysadmin_email] %>
+  ServerName    chef.<%= @node[:domain] %>
+  ServerAlias   chef
+  DocumentRoot  /u/www/public
+  ErrorLog      /var/log/chef/apache_error.log
+</VirtualHost>
+
 # This virtual host is for chef-client use. It only authenticates by IP address (chef-server uses openid)
 <VirtualHost *:443>
   ServerAdmin   <%= @node[:base][:sysadmin_email] %>

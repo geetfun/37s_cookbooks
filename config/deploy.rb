@@ -49,7 +49,7 @@ end
 
 desc "Create tarball for chef solo"
 task :create_tarball do
-  run "cd /var/chef && tar czvf /u/mirrors/dist/cookbooks.tgz cookbooks"
+  run "cd /var/chef && tar czvf /u/www/cookbooks.tgz cookbooks"
 end
 
 desc "Run chef solo"
@@ -58,7 +58,7 @@ task :run_solo do
 end
 
 after "deploy", "update_recipes"
-#after "update_recipes", "create_tarball"
+after "update_recipes", "create_tarball"
 
 deploy.task :default, :except => {:no_release => true} do
   run "cd #{deploy_to} && git config remote.origin.url #{repository} && git pull"
