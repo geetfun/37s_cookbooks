@@ -63,7 +63,7 @@ userlist = node[:nagios][:users]
 # end
 
 nodes = []
-search(:node, "*", %w(ipaddress hostname)) {|n| nodes << n }
+search(:node, "*", %w(ipaddress hostname)) {|n| nodes << n } unless Chef::Config[:solo]
 
 service "nagios3" do
   supports :status => true, :restart => true, :reload => true
