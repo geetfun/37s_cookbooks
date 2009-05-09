@@ -124,8 +124,8 @@ end
 
 template "#{node[:chef][:server_path]}/config.ru" do
   source "config.ru.erb"
-  owner "app"
-  group "app"
+  owner "chef"
+  group "admin"
   mode 0644
 end
 
